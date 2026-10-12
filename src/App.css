@@ -1,28 +1,38 @@
 #root {
+  --sizing-sm: 10px;
   --sizing-md: 20px;
   --sizing-lg: 40px;
 }
 
 h1 {
   font-size: 32px;
+  font-family: "Bitcount Single", system-ui;
+  display: flex;
+  align-items: center;
+
+  &>.bracket {
+    font-family: var(--poppins);
+    color: var(--color-gold);
+  }
 }
 
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
+.start-btn {
+  padding: 6px 24px;
+  border-radius: var(--sizing-md);
+  color: var(--color-gold-light);
+  background: transparent;
+  box-shadow: var(--shadow);
+  border: 2px solid var(--color-gold-light);
 
   &:hover {
-    border-color: var(--accent-border);
+    letter-spacing: .05rem;
+    border-color: var(--color-gold);
+    background-color: var(--color-gold);
+    color: var(--black-bg);
   }
 
   &:focus-visible {
-    outline: 2px solid var(--accent);
+    outline: 2px solid var(--color-gold);
     outline-offset: 2px;
   }
 }
@@ -33,29 +43,32 @@ h1 {
   flex-direction: column;
   align-items: center;
   top: 200px;
-  width: 270px;
+  width: 400px;
   padding: var(--sizing-md) var(--sizing-lg);
   border-radius: var(--sizing-md);
-  background-color: var(--accent-bg);
+  background-color: var(--red-primary-dark);
   box-shadow: var(--shadow);
-  transition: all 300ms ease;
-}
 
-.hero>.base {
-  inset-inline: 0;
-  margin: 0;
-  width: 130px;
-  position: relative;
-  z-index: 0;
+  &>.base {
+    inset-inline: 0;
+    margin: 0;
+    width: 130px;
+    position: relative;
+    z-index: 0;
 
+  }
 }
 
 .hero.top {
   position: absolute;
+  padding-block: var(--sizing-sm);
   top: 10px;
   width: 80vw;
   flex-direction: row;
   justify-content: space-between;
+  &>.base {
+    width: 100px;
+  }
 }
 
 #center {

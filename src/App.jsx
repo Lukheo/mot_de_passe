@@ -19,7 +19,7 @@ function App() {
         </div>
         <button
           type="button"
-          className="counter"
+          className={isTop ? "start-btn top" : "start-btn"}
           onClick={() => isTop ? setIsTop(false) : setIsTop(true)}
         >
           {isTop ? "Retour" : "Nouvelle partie"}

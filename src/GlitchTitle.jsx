@@ -1,40 +1,73 @@
-import { useState } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
-const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&";
+const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&_-*";
 
 function GlitchTitle({ text }) {
-    const [display, setDisplay] = useState(text);
+    const [display, setDisplay] = useState("");
+    const [started, setStarted] = useState(false);
 
-    const handleMouseEnter = () => {
-        let iteration = 0;
+    const animating = useRef(false);
+    const intervalRef = useRef(null);
 
-        const interval = setInterval(() => {
-            setDisplay(
-                text
-                    .split("")
-                    .map((char, index) => {
-                        if (char === " ") return " ";
-                        if (index < iteration) return text[index];
+    const reveal = useCallback(() => {
+        if (animating.current) return;
 
-                        return chars[Math.floor(Math.random() * chars.length)];
-                    })
-                    .join("")
-            );
+        animating.current = true;
+        setStarted(true);
+        setDisplay("");
 
-            iteration += 0.5;
+        let index = 0;
+        let frame = 0;
+        let revealed = "";
 
-            if (iteration >= text.length) {
-                clearInterval(interval);
-                setDisplay(text);
+        intervalRef.current = setInterval(() => {
+            const nextChar = text[index];
+
+            if (nextChar === " ") {
+                revealed += " ";
+                index++;
+                frame = 0;
+                setDisplay(revealed);
+            } else {
+                const randomChar =
+                    chars[Math.floor(Math.random() * chars.length)];
+
+                setDisplay(revealed + randomChar);
+                frame++;
+
+                if (frame >= 4) {
+                    revealed += nextChar;
+                    index++;
+                    frame = 0;
+                    setDisplay(revealed);
+                }
             }
-        }, 20);
-    };
 
-    return <h1 onMouseEnter={handleMouseEnter}>
-        <span className="bracket">[ </span>
-        {display}
-        <span className="bracket"> ]</span>
-    </h1>;
+            if (index >= text.length) {
+                clearInterval(intervalRef.current);
+                intervalRef.current = null;
+                setDisplay(text);
+                animating.current = false;
+            }
+        }, 35);
+    }, [text]);
+
+    useEffect(() => {
+        const timeout = setTimeout(reveal, 300);
+
+        return () => {
+            clearTimeout(timeout);
+            clearInterval(intervalRef.current);
+        };
+    }, [reveal]);
+
+    return (
+        <h1 onMouseEnter={reveal}>
+            <span className="bracket">[ </span>
+            {started && display} _
+            <span className="bracket"> ]</span>
+        </h1>
+    );
 }
 
 export default GlitchTitle;
