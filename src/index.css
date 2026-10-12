@@ -42,6 +42,10 @@
   --radius-md: 8px;
   --radius-lg: 14px;
 
+  --sizing-sm: 10px;
+  --sizing-md: 20px;
+  --sizing-lg: 40px;
+
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
   color-scheme: light dark;
@@ -73,7 +77,6 @@ body {
 }
 
 #root {
-  width: 1126px;
   max-width: 100%;
   margin: 0 auto;
   text-align: center;
@@ -92,10 +95,14 @@ h2 {
 }
 
 h1 {
-  font-size: 56px;
+  font-size: 32px;
+  font-family: "Bitcount Single", system-ui;
+  display: flex;
+  align-items: center;
 
-  @media (max-width: 1024px) {
-    font-size: 36px;
+  &>.bracket {
+    font-family: var(--poppins);
+    color: var(--color-gold);
   }
 }
 
@@ -112,4 +119,35 @@ h2 {
 
 p {
   margin: 0;
+}
+
+div:not(#root) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--sizing-md) var(--sizing-lg);
+  border-radius: var(--sizing-md);
+  background-color: var(--red-primary-dark);
+  box-shadow: var(--shadow);
+  gap: var(--sizing-lg);
+}
+
+.btn {
+  padding: 6px 24px;
+  border-radius: var(--sizing-md);
+  color: var(--color-gold-light);
+  background: transparent;
+  box-shadow: var(--shadow);
+  border: 2px solid var(--color-gold-light);
+
+  &:hover {
+    border-color: var(--color-gold);
+    background-color: var(--color-gold);
+    color: var(--black-bg);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
 }
