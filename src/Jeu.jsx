@@ -1,8 +1,9 @@
+import './Jeu.css';
+
 function Jeu() {
   return (
     <section id="jeu">
 
-      <p>La partie commence !</p>
     </section>
   );
 }
