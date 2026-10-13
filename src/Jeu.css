@@ -4,17 +4,9 @@
     flex-direction: column;
     padding: var(--sizing-md);
     border: 2px solid var(--black-bg-secondary);
-    border-radius: var(--sizing-md);
+    border-radius: var(--sizing-sm);
     box-shadow: var(--shadow);
     gap: var(--sizing-md);
-    justify-content: space-around;
-}
-
-div#interface {
-    background-color: var(--black-bg);
-    box-shadow: none;
-    flex-grow: 1;
-    display: flex;
     justify-content: space-around;
 }
 
@@ -22,24 +14,83 @@ div#interface {
     color: var(--color-gold-light);
 }
 
-.mot-de-passe {
-    padding: var(--sizing-lg);
-    border-radius: var(--radius-md);
-    background: var(--black-bg-secondary);
-    border: 2px solid var(--color-gold);
-    color: var(--color-gold);
+.pixel {
     font-family: var(--heading);
-    cursor: pointer;
+}
+
+#jeu {
+    & #interface {
+        background-color: var(--black-bg);
+        box-shadow: none;
+        flex-grow: 1;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    & #hud {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        color: var(--color-gold-light);
+        border-radius: var(--sizing-sm);
+    }
+
+    & .mot-de-passe,
+    #fin {
+        width: 50%;
+        border-radius: var(--sizing-sm);
+        background: var(--black-bg-secondary);
+        border: 2px solid var(--color-gold);
+        color: var(--color-gold);
+    }
+
+    & .mot-de-passe {
+        cursor: pointer;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    & .spots {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        align-items: center;
+        background-color: transparent;
+        box-shadow: none;
+        padding: 0;
+
+        & .spot {
+            width: 12px;
+            height: 12px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            background: var(--color-gold-light);
+            box-shadow:
+                0 0 6px var(--color-gold),
+                0 0 14px var(--color-gold);
+            opacity: 1;
+            transition: opacity 300ms ease, box-shadow 300ms ease;
+
+            &.eteint {
+                opacity: 0.15;
+                box-shadow: none;
+            }
+        }
+    }
 }
 
 .mot-floute {
-  filter: blur(8px);
-  user-select: none;
-  transition: filter 300ms ease;
+    filter: blur(8px);
+    user-select: none;
+    transition: filter 300ms ease;
+    margin: 0;
+    font-family: var(--heading);
 }
 
-.mot-visible {
-  filter: blur(0);
-  user-select: auto;
-  transition: filter 300ms ease;
+.mot-floute.visible {
+    filter: blur(0);
+    user-select: auto;
+    transition: filter 300ms ease;
 }
