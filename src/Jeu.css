@@ -7,4 +7,39 @@
     border-radius: var(--sizing-md);
     box-shadow: var(--shadow);
     gap: var(--sizing-md);
+    justify-content: space-around;
+}
+
+div#interface {
+    background-color: var(--black-bg);
+    box-shadow: none;
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-around;
+}
+
+.rebours {
+    color: var(--color-gold-light);
+}
+
+.mot-de-passe {
+    padding: var(--sizing-lg);
+    border-radius: var(--radius-md);
+    background: var(--black-bg-secondary);
+    border: 2px solid var(--color-gold);
+    color: var(--color-gold);
+    font-family: var(--heading);
+    cursor: pointer;
+}
+
+.mot-floute {
+  filter: blur(8px);
+  user-select: none;
+  transition: filter 300ms ease;
+}
+
+.mot-visible {
+  filter: blur(0);
+  user-select: auto;
+  transition: filter 300ms ease;
 }

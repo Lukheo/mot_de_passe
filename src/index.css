@@ -3,6 +3,7 @@
     var(--color-glow) 0 10px 15px -3px;
 
   --poppins: "Poppins", sans-serif;
+  --heading: "Bitcount Single", system-ui;
   --pop-lg: 900;
   --pop-md: 700;
   --pop-sm: 400;
@@ -112,7 +113,6 @@ h2 {
   font-size: 24px;
   line-height: 118%;
   letter-spacing: -0.24px;
-  margin: 0 0 8px;
 
   @media (max-width: 1024px) {
     font-size: 20px;
