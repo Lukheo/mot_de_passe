@@ -1,0 +1,4 @@
+.danger {
+    color: var(--color-error);
+    transform: scale(1.5);
+}

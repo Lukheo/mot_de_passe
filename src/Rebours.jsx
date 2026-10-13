@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import './Rebours.css'
 
 function Rebours({ duree = 10, onFinish }) {
     const [secondes, setSecondes] = useState(duree);
@@ -16,7 +17,7 @@ function Rebours({ duree = 10, onFinish }) {
         return () => clearTimeout(timer);
     }, [secondes]);
 
-    return <p id="rebours">{secondes}</p>
+    return <p className={secondes <= 5 ? "danger": ""} id="rebours">{secondes}</p>
 }
 
 
